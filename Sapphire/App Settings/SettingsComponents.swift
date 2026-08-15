@@ -114,8 +114,7 @@ struct WidgetRowView: View {
     }
 
     private var isPremiumLocked: Bool {
-        guard let requiredFeature else { return false }
-        return !subscriptionManager.hasAccess(to: requiredFeature)
+        return false
     }
 
     private var baseEnabledBinding: Binding<Bool> {
@@ -198,8 +197,7 @@ struct LiveActivityRowView: View {
     }
 
     private var isPremiumLocked: Bool {
-        guard let requiredFeature else { return false }
-        return !subscriptionManager.hasAccess(to: requiredFeature)
+        return false
     }
 
     private var baseEnabledBinding: Binding<Bool> {
