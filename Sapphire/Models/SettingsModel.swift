@@ -585,6 +585,10 @@ struct Settings: Codable, Equatable {
     var appLanguage: String = "en"
     var hapticFeedbackEnabled: Bool = true
     var googleAnalyticsEnabled: Bool = true
+    var googleAppID: String = ""
+    var googleAPIKey: String = ""
+    var googleProjectID: String = ""
+    var googleGCMSenderID: String = ""
     var hideFromScreenSharing: Bool = false
     var notchDisplayTarget: NotchDisplayTarget = .macbookDisplay
     var expandOnHover: Bool = false

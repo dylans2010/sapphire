@@ -366,6 +366,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
             .store(in: &cancellables)
 
         settingsModel.$settings
+            .map(\.googleAppID)
+            .removeDuplicates()
+            .sink { _ in SapphireAnalytics.bootstrap() }
+            .store(in: &cancellables)
+
+        settingsModel.$settings
             .map(\.neardropDeviceDisplayName)
             .removeDuplicates()
             .sink { NearbyConnectionManager.shared.deviceDisplayName = $0 }
