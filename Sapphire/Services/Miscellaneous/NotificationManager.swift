@@ -30,10 +30,6 @@ struct NotificationPayload: Identifiable, Equatable {
         return lowerBody.contains("sent an image") || lowerBody.contains("image file")
     }
 
-    var verificationCode: String? {
-        VerificationCodeDetector.find(in: "\(title) \(body)")
-    }
-
     var appName: String {
         switch appIdentifier {
         case "com.apple.iChat", "com.apple.MobileSMS": return "Messages"
@@ -240,24 +236,6 @@ class NotificationManager: ObservableObject {
                     if _shouldShowNotification(for: notification) { notificationsToPublish.append(notification) }
                 }
             }
-            if let newest = notificationsToPublish.first { self.lastNotificationId = Int64(newest.id) ?? self.lastNotificationId; self.lastNotificationDate = newest.date.timeIntervalSinceReferenceDate }
-            for notification in notificationsToPublish.reversed() {
-                self.latestNotification = notification
-                if let code = notification.verificationCode {
-                    let source = notification.appName
-                    let title = notification.title
-                    let body = notification.body
-                    Task { @MainActor in
-                        SmartInboxMonitor.shared.presentOTP(
-                            code: code,
-                            source: source,
-                            title: title,
-                            body: body
-                        )
-                    }
-                }
-            }
-        } catch { print("Failed to check for notifications: \(error)") }
     }
     private func _shouldShowNotification(for payload: NotificationPayload) -> Bool {
         let settings = settingsModel.settings
