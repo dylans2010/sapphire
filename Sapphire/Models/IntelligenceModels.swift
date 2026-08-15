@@ -187,16 +187,36 @@ public final class IntelligenceNotchViewModel: ObservableObject {
     @Published public var taskInput: String = ""
     @Published public var isRunning: Bool = false
     @Published public var subtaskProgress: (current: Int, total: Int) = (0, 0)
+    @Published public var statusMessage: String = "Ready"
+    @Published public var currentActionLabel: String = ""
     @Published public var lastResult: IntelligenceResult? = nil
     @Published public var logEntries: [IntelligenceLogEntry] = []
+
+    public var currentStepTitle: String {
+        if !currentActionLabel.isEmpty { return currentActionLabel }
+        return logEntries.last(where: { !$0.isError })?.text ?? ""
+    }
+
+    public var displayStepIndex: Int {
+        guard subtaskProgress.total > 0 else { return 0 }
+        return min(max(subtaskProgress.current, 1), subtaskProgress.total)
+    }
+
+    public var displayStepTotal: Int {
+        max(subtaskProgress.total, 0)
+    }
 
     public init() {}
 
     public func run(apiKey: String, backend: LLMBackend, geminiSpeedMode: GeminiSpeedMode) {
+        statusMessage = "Running"
+        currentActionLabel = taskInput.trimmingCharacters(in: .whitespacesAndNewlines)
         isRunning = true
     }
 
     public func stop() {
+        statusMessage = "Stopped"
+        currentActionLabel = ""
         isRunning = false
     }
 }
