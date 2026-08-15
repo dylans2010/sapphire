@@ -359,21 +359,42 @@ struct NotchController: View {
 self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
     }
 
+    // MARK: - Gemini Shadow
+    @ViewBuilder
+    private var geminiShadowBackground: some View {
+        if let config = config, isGeminiActive {
+            let isShadowVisible = (notchState != .initial)
+            let shadowRadius = notchState == .clickExpanded ? config.expandedShadowRadius : 12
+            let shadowYOffset = notchState == .clickExpanded ? config.expandedShadowOffsetY : 6
+            activeShape
+                .fill(geminiShadowGradient)
+                .blur(radius: shadowRadius)
+                .offset(y: shadowYOffset)
+                .opacity(isShadowVisible ? 0.75 : 0)
+                .allowsHitTesting(false)
+        }
+    }
+
+    private var activeShadowColor: Color {
+        guard let config = config, !isGeminiActive else { return .clear }
+        return config.expandedShadowColor.opacity(shadowOpacity)
+    }
+
+    private var activeShadowRadius: CGFloat {
+        guard let config = config, !isGeminiActive else { return 0 }
+        return notchState == .clickExpanded ? config.expandedShadowRadius : (notchState == .hoverExpanded ? 12 : 0)
+    }
+
+    private var activeShadowYOffset: CGFloat {
+        guard let config = config, !isGeminiActive else { return 0 }
+        return notchState == .clickExpanded ? config.expandedShadowOffsetY : (notchState == .hoverExpanded ? 6 : 0)
+    }
+
     // MARK: - Body
     var body: some View {
         if let config = config {
             ZStack(alignment: .top) {
-                if isGeminiActive {
-                    let isShadowVisible = (notchState != .initial)
-                    let shadowRadius = notchState == .clickExpanded ? config.expandedShadowRadius : 12
-                    let shadowYOffset = notchState == .clickExpanded ? config.expandedShadowOffsetY : 6
-                    activeShape
-                        .fill(geminiShadowGradient)
-                        .blur(radius: shadowRadius)
-                        .offset(y: shadowYOffset)
-                        .opacity(isShadowVisible ? 0.75 : 0)
-                        .allowsHitTesting(false)
-                }
+                geminiShadowBackground
 
                 notchBackground
                     .mask(activeShape)
@@ -410,9 +431,9 @@ self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
             }
             // MARK: - SHADOW LOGIC
             .shadow(
-                color: isGeminiActive ? .clear : config.expandedShadowColor.opacity(shadowOpacity),
-                radius: isGeminiActive ? 0 : (notchState == .clickExpanded ? config.expandedShadowRadius : (notchState == .hoverExpanded ? 12 : 0)),
-                y: isGeminiActive ? 0 : (notchState == .clickExpanded ? config.expandedShadowOffsetY : (notchState == .hoverExpanded ? 6 : 0))
+                color: activeShadowColor,
+                radius: activeShadowRadius,
+                y: activeShadowYOffset
             )
             .frame(width: animatedWidth, height: animatedHeight)
             .contentShape(activeShape)
@@ -1037,6 +1058,8 @@ self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
         case .geminiLive(let payload): GeminiActiveActivityView.right(isMuted: payload.isMicMuted) { geminiLiveManager.toggleMicrophone() }
         case .sports(let payload, _):
             SportsLiveActivityView.right(for: payload, preferLogo: settings.settings.sportsPreferLogo)
+        case .finance(let payload):
+            FinanceLiveActivityView.right(for: payload)
         case .microphone: MicrophoneLiveActivityView.right { MicrophoneUsageManager.shared.toggleMute() }
         case .nearDrop(let payload): NearDropCompactActivityView.right(payload: payload)
         case .hud(let type): SystemHUDSlimActivityView.right(type: type, settings: SettingsModel.shared)

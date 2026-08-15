@@ -1858,3 +1858,84 @@ struct ParcelLiveActivityView: View {
         .frame(minWidth: 340, maxWidth: 440)
     }
 }
+
+// MARK: - Sports & Finance Live Activity Views
+
+struct SportsLiveActivityView {
+    static func left(for payload: SportsPayload, preferLogo: Bool = true) -> some View {
+        HStack(spacing: 6) {
+            if preferLogo, let logoURL = payload.homeLogoURL {
+                AsyncImage(url: logoURL) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image.resizable().aspectRatio(contentMode: .fit)
+                    default:
+                        Image(systemName: "sportscourt.fill").foregroundColor(.orange)
+                    }
+                }
+                .frame(width: 18, height: 18)
+            } else {
+                Image(systemName: "sportscourt.fill")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.orange)
+            }
+
+            Text(payload.homeTeam)
+                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .foregroundColor(.white)
+                .lineLimit(1)
+        }
+    }
+
+    static func right(for payload: SportsPayload, preferLogo: Bool = true) -> some View {
+        HStack(spacing: 6) {
+            Text("\(payload.homeScore) - \(payload.awayScore)")
+                .font(.system(size: 12, weight: .bold, design: .monospaced))
+                .foregroundColor(.white)
+
+            Text(payload.awayTeam)
+                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .foregroundColor(.white)
+                .lineLimit(1)
+
+            if preferLogo, let logoURL = payload.awayLogoURL {
+                AsyncImage(url: logoURL) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image.resizable().aspectRatio(contentMode: .fit)
+                    default:
+                        EmptyView()
+                    }
+                }
+                .frame(width: 18, height: 18)
+            }
+        }
+    }
+}
+
+struct FinanceLiveActivityView {
+    static func left(for payload: FinancePayload) -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: payload.isPositive ? "chart.line.uptrend.xyaxis" : "chart.line.downtrend.xyaxis")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(payload.isPositive ? .green : .red)
+
+            Text(payload.symbol)
+                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .foregroundColor(.white)
+                .lineLimit(1)
+        }
+    }
+
+    static func right(for payload: FinancePayload) -> some View {
+        HStack(spacing: 6) {
+            Text(payload.price)
+                .font(.system(size: 12, weight: .bold, design: .monospaced))
+                .foregroundColor(.white)
+
+            Text(payload.changePercent)
+                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                .foregroundColor(payload.isPositive ? .green : .red)
+        }
+    }
+}
