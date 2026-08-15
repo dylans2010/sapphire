@@ -170,7 +170,7 @@ struct HelperStatusBanner: View {
 class HelperManager: ObservableObject {
     static let shared = HelperManager()
 
-    let helperToolIdentifier = "com.shariq.sapphireHelper"
+    let helperToolIdentifier = "com.dylans2010.sapphireHelper"
 
     @Published var status: SMAppService.Status = .notRegistered
     @Published var isRunning: Bool = false
@@ -338,7 +338,7 @@ class HelperManager: ObservableObject {
 
         let uid = getuid()
         let helperLabel = helperToolIdentifier
-        let appBundle = Bundle.main.bundleIdentifier ?? "com.cshariq.sapphire"
+        let appBundle = Bundle.main.bundleIdentifier ?? "com.dylans2010.Sapphire"
         let loginItemWasEnabled = SMAppService.mainApp.status == .enabled
 
         do {
@@ -353,6 +353,13 @@ class HelperManager: ObservableObject {
             helperLogger.info("[HelperManager] Unregistered main-app login item")
         } catch {
             helperLogger.error("[HelperManager] Main-app unregister failed: \(error.localizedDescription)")
+        }
+
+        // Bootout legacy identifiers if present
+        for legacyLabel in ["com.shariq.sapphireHelper", "com.shariq.sapphire", "com.cshariq.sapphire"] {
+            bootoutLaunchdJob(domain: "gui/\(uid)", label: legacyLabel)
+            bootoutLaunchdJob(domain: "user/\(uid)", label: legacyLabel)
+            bootoutLaunchdJob(domain: "system", label: legacyLabel)
         }
 
         bootoutLaunchdJob(domain: "gui/\(uid)", label: helperLabel)

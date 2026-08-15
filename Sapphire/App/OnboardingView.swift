@@ -823,7 +823,7 @@ private struct FinishStepView: View {
                     Image(systemName: "link").resizable().aspectRatio(contentMode: .fit).frame(width: 18, height: 18).foregroundColor(.white).padding(6).background(Color.blue).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(PlainButtonStyle())
 
-                Link(destination: URL(string: "https://github.com/cshariq/Sapphire")!) {
+                Link(destination: URL(string: "https://github.com/dylans2010/Sapphire")!) {
                     Image("github_logo").resizable().renderingMode(.template).aspectRatio(contentMode: .fit).frame(width: 18, height: 18).foregroundColor(.white).padding(6).background(Color.black).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }.buttonStyle(PlainButtonStyle())
 
@@ -838,7 +838,7 @@ private struct FinishStepView: View {
             Spacer()
             OnboardingButton(title: "Explore Sapphire", action: onComplete)
 
-            Text("© 2025 Shariq Charolia. All rights reserved.")
+            Text("© 2025 Sapphire. All rights reserved.")
                 .font(.caption).foregroundStyle(.tertiary).padding(.bottom, 20)
         }
         .onAppear {
@@ -854,7 +854,7 @@ private struct OnboardingUpdateStatusView: View {
             switch updateChecker.status {
             case .checking: HStack(spacing: 8) { ProgressView().controlSize(.small); Text("Checking for updates...").foregroundStyle(.secondary) }
             case .upToDate: HStack(spacing: 8) { Image(systemName: "checkmark.circle.fill").foregroundStyle(.green); Text("You are up to date!").foregroundStyle(.secondary) }
-            case .available(let version, _): VStack(spacing: 8) { Text("Version \(version) is available!").font(.headline); Link(destination: URL(string: "https://github.com/cshariq/Sapphire/releases")!) { Text("Download from GitHub") }.buttonStyle(.bordered).tint(.accentColor) }
+            case .available(let version, _): VStack(spacing: 8) { Text("Version \(version) is available!").font(.headline); Link(destination: URL(string: "https://github.com/dylans2010/Sapphire/releases")!) { Text("Download from GitHub") }.buttonStyle(.bordered).tint(.accentColor) }
             case .error(let message): HStack(spacing: 8) { Image(systemName: "xmark.octagon.fill").foregroundColor(.red); Text(message).foregroundStyle(.secondary).lineLimit(1) }
             default: EmptyView()
             }

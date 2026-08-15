@@ -44,11 +44,6 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>SapphireHelper.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
 		<key>SapphireiMessageHelper.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -64,7 +59,7 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>com.shariq.sapphireHelper.xcscheme_^#shared#^_</key>
+		<key>com.dylans2010.sapphireHelper.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>

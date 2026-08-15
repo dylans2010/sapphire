@@ -3,7 +3,7 @@ import AppKit
 import UniformTypeIdentifiers
 
 extension UTType {
-    static let sapphireSettingsBackup = UTType(exportedAs: "com.shariq.sapphire.settings-backup")
+    static let sapphireSettingsBackup = UTType(exportedAs: "com.dylans2010.sapphire.settings-backup")
 }
 
 public struct StatThreshold: Codable, Equatable {
@@ -1234,12 +1234,12 @@ class SettingsModel: ObservableObject {
     }
 
     private let defaults = UserDefaults.standard
-    private let settingsAccessQueue = DispatchQueue(label: "com.shariq.sapphire.settings.sync.queue")
+    private let settingsAccessQueue = DispatchQueue(label: "com.dylans2010.sapphire.settings.sync.queue")
     private var isApplyingLoadedSettings = false
     private var pendingSaveWorkItem: DispatchWorkItem?
 
     private var encodedCache: [String: Data] = [:]
-    private let cacheQueue = DispatchQueue(label: "com.shariq.sapphire.settings.cache")
+    private let cacheQueue = DispatchQueue(label: "com.dylans2010.sapphire.settings.cache")
 
     private init() {
         _ = APIKeyManager.shared
@@ -1653,7 +1653,7 @@ extension LaunchpadPageItem: Transferable {
 }
 
 extension UTType {
-    static let launchpadItem = UTType(exportedAs: "com.shariq.sapphire.launchpaditem")
+    static let launchpadItem = UTType(exportedAs: "com.dylans2010.sapphire.launchpaditem")
 }
 
 enum SettingsSection: String, CaseIterable, Identifiable {

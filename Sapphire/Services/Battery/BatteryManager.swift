@@ -337,7 +337,7 @@ class BatteryManager {
 
         guard self.helperConnection == nil else { return }
 
-        let connection = NSXPCConnection(machServiceName: "com.shariq.sapphireHelper", options: .privileged)
+        let connection = NSXPCConnection(machServiceName: "com.dylans2010.sapphireHelper", options: .privileged)
         let interface = NSXPCInterface(with: HelperProtocol.self)
         interface.setClasses(
             NSSet(array: [FanInfo.self, NSNull.self]) as! Set<AnyHashable>,

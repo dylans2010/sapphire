@@ -4,11 +4,11 @@
 <dict>
 	<key>com.apple.security.smjobbless.domains</key>
 	<array>
-		<string>com.shariq.sapphireHelper</string>
+		<string>com.dylans2010.sapphireHelper</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.shariq.sapphire</string>
+		<string>$(AppIdentifierPrefix)com.dylans2010.Sapphire</string>
 	</array>
 </dict>
 </plist>

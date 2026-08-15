@@ -145,7 +145,7 @@ extension Float {
 public class SMC {
     public static let shared = SMC()
     private var conn: io_connect_t = 0
-    private let logger = Logger(subsystem: "com.shariq.sapphireHelper", category: "SMC")
+    private let logger = Logger(subsystem: "com.dylans2010.sapphireHelper", category: "SMC")
 
     public init?() {
         var result: kern_return_t

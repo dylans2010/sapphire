@@ -104,7 +104,7 @@ class UpdateChecker: NSObject, ObservableObject, URLSessionDownloadDelegate {
         if case .installing = status { return }
 
         applyStatus(.checking)
-        guard let url = URL(string: "https://api.github.com/repos/cshariq/Sapphire/releases/latest") else {
+        guard let url = URL(string: "https://api.github.com/repos/dylans2010/Sapphire/releases/latest") else {
             applyStatus(.error("Invalid update URL")); return
         }
 
@@ -141,7 +141,7 @@ class UpdateChecker: NSObject, ObservableObject, URLSessionDownloadDelegate {
         if case .installing = status { return }
 
         applyStatus(.checking)
-        guard let url = URL(string: "https://api.github.com/repos/cshariq/Sapphire/releases?per_page=5") else {
+        guard let url = URL(string: "https://api.github.com/repos/dylans2010/Sapphire/releases?per_page=5") else {
             applyStatus(.error("Invalid beta update URL")); return
         }
 
