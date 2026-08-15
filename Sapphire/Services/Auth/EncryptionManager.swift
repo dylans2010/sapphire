@@ -1,31 +1,23 @@
-//
-//  EncryptionManager.swift
-//  Sapphire
-//
-
 import Foundation
+import CryptoKit
 
-public final class EncryptionManager {
-    public static let shared = EncryptionManager()
+class EncryptionManager {
+    static let shared = EncryptionManager()
+    private let cryptoManager = CryptoManager.shared
 
     private init() {}
 
-    public func encrypt(_ data: Data) throws -> Data {
-        guard let encrypted = CryptoManager.shared.encrypt(data: data) else {
-            throw EncryptionError.encryptionFailed
+    func encrypt(_ data: Data) throws -> Data {
+        guard let encrypted = cryptoManager.encrypt(data: data) else {
+            throw NSError(domain: "EncryptionManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "Encryption failed"])
         }
         return encrypted
     }
 
-    public func decrypt(_ data: Data) throws -> Data {
-        guard let decrypted = CryptoManager.shared.decrypt(data: data) else {
-            throw EncryptionError.decryptionFailed
+    func decrypt(_ data: Data) throws -> Data {
+        guard let decrypted = cryptoManager.decrypt(data: data) else {
+            throw NSError(domain: "EncryptionManager", code: 2, userInfo: [NSLocalizedDescriptionKey: "Decryption failed"])
         }
         return decrypted
-    }
-
-    public enum EncryptionError: Error {
-        case encryptionFailed
-        case decryptionFailed
     }
 }
