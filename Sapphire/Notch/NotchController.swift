@@ -356,7 +356,7 @@ struct NotchController: View {
         self.notchWindow = notchWindow
         let calendarViewModel = InteractiveCalendarViewModel()
         _calendarViewModel = StateObject(wrappedValue: calendarViewModel)
-self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
+        self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
     }
 
     // MARK: - Gemini Shadow
@@ -399,35 +399,21 @@ self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
                 notchBackground
                     .mask(activeShape)
 
-                ZStack(alignment: .top) {
-                    let showActivityView = (notchState == .autoExpanded || notchState == .hoverExpanded || isAnimatingActivityOut)
-                    if showActivityView && isLiveActivityActive && canRenderAutoContent {
-                        autoActivityView
-                            .fixedSize(horizontal: true, vertical: false)
-                            .blur(radius: activityBlurRadius)
-                            .scaleEffect(activityContentScale)
-                            .id(liveActivityManager.currentActivity)
-                            .animation(liveActivityManager.activityHasBottomContent ?
-                                       config.bottomContentTransitionAnimation :
-                                        config.activityToActivityAnimation,
-                                       value: liveActivityManager.activityAnimationKey)
-                            .opacity(autoContentOpacity)
-                            .scaleEffect(animatedContentScale)
-                    } else {
-                        contentView
-                            .mask(activeShape)
-                    }
-
-                    if notchState == .clickExpanded {
-                        expandedOverlayIcons
-                            .transition(.opacity.animation(.easeInOut(duration: 0.2)))
-                            .zIndex(1)
-
-                        hudOverlayView
-                            .transition(.opacity.animation(.easeOut(duration: 0.18)))
-                            .zIndex(3)
-                    }
-                }
+                TopContentStack(config: config,
+                                showActivityView: (notchState == .autoExpanded || notchState == .hoverExpanded || isAnimatingActivityOut),
+                                isLiveActivityActive: isLiveActivityActive,
+                                canRenderAutoContent: canRenderAutoContent,
+                                activeShape: activeShape,
+                                autoActivityView: AnyView(autoActivityView),
+                                contentView: AnyView(contentView),
+                                activityBlurRadius: activityBlurRadius,
+                                activityContentScale: activityContentScale,
+                                animatedContentScale: animatedContentScale,
+                                autoContentOpacity: autoContentOpacity,
+                                isClickExpanded: notchState == .clickExpanded,
+                                liveActivityManager: liveActivityManager,
+                                hudOverlayView: AnyView(hudOverlayView),
+                                expandedOverlayIcons: AnyView(expandedOverlayIcons))
             }
             // MARK: - SHADOW LOGIC
             .shadow(
@@ -503,10 +489,20 @@ self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
                 }
             }
             .onChange(of: settings.settings) { _, newSettings in
-                let targetScreen = notchWindow?.screen ?? CursorPosition.targetNotchScreen()
-                let newConfig = ResolvedNotchConfiguration(from: newSettings, screen: targetScreen)
-                self.config = newConfig
-                self.expansionAnimation = newConfig.expandAnimation
+                // Break up complex expression to help the type-checker
+                let screen: NSScreen?
+                if let win = notchWindow {
+                    screen = win.screen
+                } else {
+                    screen = CursorPosition.targetNotchScreen()
+                }
+
+                let resolved = ResolvedNotchConfiguration(from: newSettings, screen: screen)
+
+                self.config = resolved
+                self.expansionAnimation = resolved.expandAnimation
+
+                // Re-evaluate layout/state with the updated config
                 handleStateChange(from: notchState, to: notchState)
             }
         } else {
@@ -524,7 +520,58 @@ self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
                 }
         }
     }
+}
 
+fileprivate struct TopContentStack: View {
+    let config: ResolvedNotchConfiguration
+    let showActivityView: Bool
+    let isLiveActivityActive: Bool
+    let canRenderAutoContent: Bool
+    let activeShape: CustomNotchShape
+    let autoActivityView: AnyView
+    let contentView: AnyView
+    let activityBlurRadius: CGFloat
+    let activityContentScale: CGFloat
+    let animatedContentScale: CGFloat
+    let autoContentOpacity: Double
+    let isClickExpanded: Bool
+    let liveActivityManager: LiveActivityManager
+    let hudOverlayView: AnyView
+    let expandedOverlayIcons: AnyView
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            if showActivityView && isLiveActivityActive && canRenderAutoContent {
+                autoActivityView
+                    .fixedSize(horizontal: true, vertical: false)
+                    .blur(radius: activityBlurRadius)
+                    .scaleEffect(activityContentScale)
+                    .id(liveActivityManager.currentActivity)
+                    .animation(liveActivityManager.activityHasBottomContent ?
+                               config.bottomContentTransitionAnimation :
+                               config.activityToActivityAnimation,
+                               value: liveActivityManager.activityAnimationKey)
+                    .opacity(autoContentOpacity)
+                    .scaleEffect(animatedContentScale)
+            } else {
+                contentView
+                    .mask(activeShape)
+            }
+
+            if isClickExpanded {
+                expandedOverlayIcons
+                    .transition(.opacity.animation(.easeInOut(duration: 0.2)))
+                    .zIndex(1)
+
+                hudOverlayView
+                    .transition(.opacity.animation(.easeOut(duration: 0.18)))
+                    .zIndex(3)
+            }
+        }
+    }
+}
+
+extension NotchController {
     // MARK: - Subviews
     @ViewBuilder
     private var notchBackground: some View {
@@ -2182,3 +2229,4 @@ extension LiveActivityManager {
         }
     }
 }
+
