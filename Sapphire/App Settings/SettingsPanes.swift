@@ -9349,6 +9349,123 @@ struct ModernSegmentedPicker: View {
     }
 }
 
+struct IntelligenceSettingsView: View {
+    @EnvironmentObject var settings: SettingsModel
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Blip Intelligence")
+                    .font(.largeTitle.bold())
+                    .padding(.bottom)
+
+                VStack(alignment: .leading, spacing: 0) {
+                    ToggleRow(
+                        title: "Enable Blip Intelligence",
+                        description: "Enable AI assistant features, task automation, and smart responses.",
+                        isOn: $settings.settings.intelligenceEnabled
+                    )
+                }
+                .modifier(SettingsContainerModifier())
+
+                IntelligenceRunnerView(apiKey: APIKeyManager.shared.googleGeminiAPIKey)
+            }
+            .padding(25)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }
+    }
+}
+
+struct SportsSettingsView: View {
+    @EnvironmentObject var settings: SettingsModel
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Sports")
+                    .font(.largeTitle.bold())
+                    .padding(.bottom)
+
+                VStack(alignment: .leading, spacing: 0) {
+                    ToggleRow(
+                        title: "Enable Sports Widget",
+                        description: "Display scores and live events in the widget strip.",
+                        isOn: $settings.settings.sportsWidgetEnabled
+                    )
+
+                    Divider().padding(.leading, 20)
+
+                    ToggleRow(
+                        title: "Live Activity Scores",
+                        description: "Show active sports scores in the notch live activity.",
+                        isOn: $settings.settings.sportsLiveActivityEnabled
+                    )
+
+                    Divider().padding(.leading, 20)
+
+                    ToggleRow(
+                        title: "Include Commentary",
+                        description: "Show live game commentary updates.",
+                        isOn: $settings.settings.sportsCommentaryInLiveActivity
+                    )
+
+                    Divider().padding(.leading, 20)
+
+                    ToggleRow(
+                        title: "Live Only",
+                        description: "Only display live activities when a game is currently in progress.",
+                        isOn: $settings.settings.sportsLiveActivityWhenLiveOnly
+                    )
+                }
+                .modifier(SettingsContainerModifier())
+            }
+            .padding(25)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }
+    }
+}
+
+struct FinanceSettingsView: View {
+    @EnvironmentObject var settings: SettingsModel
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Finance")
+                    .font(.largeTitle.bold())
+                    .padding(.bottom)
+
+                VStack(alignment: .leading, spacing: 0) {
+                    ToggleRow(
+                        title: "Enable Finance Widget",
+                        description: "Show stock tickers and market activity in the widget strip.",
+                        isOn: $settings.settings.financeWidgetEnabled
+                    )
+
+                    Divider().padding(.leading, 20)
+
+                    ToggleRow(
+                        title: "Stock Live Activity",
+                        description: "Show stock prices and market status in the notch live activity.",
+                        isOn: $settings.settings.financeLiveActivityEnabled
+                    )
+
+                    Divider().padding(.leading, 20)
+
+                    ToggleRow(
+                        title: "Market Hours Only",
+                        description: "Only display live activities during active stock market trading hours.",
+                        isOn: $settings.settings.financeLiveActivityActiveHoursOnly
+                    )
+                }
+                .modifier(SettingsContainerModifier())
+            }
+            .padding(25)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }
+    }
+}
+
 typealias GeminiSettingsView = IntelligenceSettingsView
 
 // MARK: - Legacy Settings View Shims
