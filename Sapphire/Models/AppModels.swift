@@ -431,7 +431,4 @@ enum SportLayoutKind: CaseIterable {
     case volleyball, lacrosse, olympics, esports, australianFootball, fieldSports
     case generic
 
-    static func from(league: String) -> SportLayoutKind {
-        SportLayoutRegistry.resolve(league: league)
-    }
 }
