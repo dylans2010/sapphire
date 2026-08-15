@@ -575,7 +575,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         window.backgroundColor = .clear
         window.hasShadow = true
         let hostingView = FocusableHostingView(
-            rootView: BetaBlockerView(onValidationComplete: { [weak self] in
                 Task { @MainActor in
                     self?.dismissBetaBlockerAndContinue()
                 }
@@ -1406,7 +1405,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         }
         completionHandler()
     }
-}
 
 // MARK: - KeyableWindow
 
