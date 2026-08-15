@@ -1,10 +1,3 @@
-//
-//  BatteryHistoryViewModel.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-14.
-//
-
 import Foundation
 import Combine
 import SwiftUI

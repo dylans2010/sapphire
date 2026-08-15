@@ -1,10 +1,3 @@
-//
-//  ImageCache.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-23.
-//
-
 import SwiftUI
 
 final class FileImageCache {

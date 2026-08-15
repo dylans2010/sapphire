@@ -1,10 +1,3 @@
-//
-//  BluetoothManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-07.
-//
-
 import Foundation
 import Combine
 import IOBluetooth

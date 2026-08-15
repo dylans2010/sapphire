@@ -1,10 +1,3 @@
-//
-//  TimerManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-27
-//
-
 import Foundation
 import Combine
 

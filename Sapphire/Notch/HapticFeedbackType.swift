@@ -1,9 +1,3 @@
-//
-//  HapticFeedbackType.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-19
-
 import Foundation
 
 public enum HapticFeedbackType {

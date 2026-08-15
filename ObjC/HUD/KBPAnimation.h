@@ -1,12 +1,5 @@
 //
 //  KBPAnimation.h
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-23.
-//
-
-//
-//  KBPAnimation.h
 //  KBPulse
 //
 //  Created by EthanRDoesMC on 10/25/21.

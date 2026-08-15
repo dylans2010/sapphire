@@ -1,10 +1,3 @@
-//
-//  BrowserAppleScriptManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-11-15
-//
-
 import Foundation
 import AppKit
 

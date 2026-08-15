@@ -1,10 +1,3 @@
-//
-//  TransferDirection.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-03.
-//
-
 import Foundation
 
 public enum TransferDirection {

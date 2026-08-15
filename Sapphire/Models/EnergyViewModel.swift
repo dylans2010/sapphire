@@ -1,10 +1,3 @@
-//
-//  EnergyViewModel.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-11-08.
-//
-
 import Foundation
 
 @MainActor

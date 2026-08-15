@@ -1,10 +1,3 @@
-//
-//  WeatherIconMapper.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-06-30.
-//
-
 import Foundation
 
 struct WeatherIconMapper {

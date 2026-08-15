@@ -1,10 +1,3 @@
-//
-//  MusicManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-05
-//
-
 import Foundation
 import AppKit
 import Combine

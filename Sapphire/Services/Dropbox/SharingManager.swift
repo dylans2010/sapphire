@@ -1,10 +1,3 @@
-//
-//  SharingManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-02.
-//
-
 import AppKit
 
 class SharingManager: NSObject, NSSharingServiceDelegate {

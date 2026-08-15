@@ -1,10 +1,3 @@
-//
-//  BatteryLowPowerView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-17.
-//
-
 import SwiftUI
 
 struct BatteryLowPowerView: View {

@@ -1,10 +1,3 @@
-//
-//  NearDropDisplayState.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-02.
-//
-
 import Foundation
 
 enum NearDropDisplayState: Equatable {

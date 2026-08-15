@@ -1,9 +1,3 @@
-//
-//  Utillity.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-23
-
 import SecurityFoundation
 import ServiceManagement
 

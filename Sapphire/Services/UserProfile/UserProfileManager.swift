@@ -1,9 +1,3 @@
-//
-//  UserProfileManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-08-10
-
 import Foundation
 import Contacts
 import EventKit

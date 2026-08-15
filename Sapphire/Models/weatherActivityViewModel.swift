@@ -1,10 +1,3 @@
-//
-//  weatherActivityViewModel.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-06-28.
-//
-
 import Foundation
 import SwiftUI
 import Combine

@@ -1,11 +1,3 @@
-//
-//  UNMutableNotificationContent.h
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-06-30.
-//
-
-
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
 

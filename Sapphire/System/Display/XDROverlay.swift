@@ -1,10 +1,3 @@
-//
-//  XDROverlay.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-13
-//
-
 import Cocoa
 import MetalKit
 

@@ -1,10 +1,3 @@
-//
-//  KeychainHelper.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-15.
-//
-
 import Foundation
 import Security
 

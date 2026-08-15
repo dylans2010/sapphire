@@ -1,10 +1,3 @@
-//
-//  Data+Extensions.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 08.04.2023.
-//
-
 import Foundation
 import CoreFoundation
 

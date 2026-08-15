@@ -1,9 +1,3 @@
-//
-//  DefaultMusicManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-22
-//
 //  System-level media control manager providing access to all native playback controls
 //  and multi-source media tracking via NativeMediaController.
 

@@ -1,9 +1,3 @@
-//
-//  XPCClient.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-26
-
 import Foundation
 
 class XPCClient {

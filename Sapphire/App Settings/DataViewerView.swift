@@ -1,10 +1,3 @@
-//
-//  DataViewerView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-08-06.
-//
-
 import SwiftUI
 
 struct DataViewerView: View {

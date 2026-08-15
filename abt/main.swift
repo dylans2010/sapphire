@@ -1,10 +1,3 @@
-//
-//  main.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025/5/19.
-//
-
 import AppKit
 import ArgumentParser
 

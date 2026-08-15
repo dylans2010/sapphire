@@ -1,10 +1,3 @@
-//
-//  LockScreenInfoWidgetView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-11.
-//
-
 import SwiftUI
 import EventKit
 

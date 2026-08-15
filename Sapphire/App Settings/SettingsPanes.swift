@@ -1,10 +1,3 @@
-//
-//  SettingsPanes.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-10.
-//
-
 import SwiftUI
 import Combine
 import Charts

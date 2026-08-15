@@ -1,10 +1,3 @@
-//
-//  CalendarWidgetView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-06-27.
-//
-
 import SwiftUI
 import EventKit
 

@@ -1,10 +1,3 @@
-//
-//  btdDevice.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2024/2/9.
-//
-
 import Foundation
 
 let fd = FileManager.default

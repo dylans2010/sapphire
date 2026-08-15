@@ -1,10 +1,3 @@
-//
-//  CursorLockManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-07-08.
-//
-
 import AppKit
 import SwiftUI
 import CoreGraphics

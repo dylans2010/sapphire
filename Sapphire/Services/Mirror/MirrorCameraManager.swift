@@ -1,10 +1,3 @@
-//
-//  MirrorCameraManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-08-11
-//
-
 import Foundation
 import AVFoundation
 import Combine

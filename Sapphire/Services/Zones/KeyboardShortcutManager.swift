@@ -1,10 +1,3 @@
-//
-//  KeyboardShortcutManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-11.
-//
-
 import AppKit
 import Combine
 import Carbon.HIToolbox

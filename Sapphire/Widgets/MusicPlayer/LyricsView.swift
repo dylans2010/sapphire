@@ -1,10 +1,3 @@
-//
-//  LyricsView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-06-26.
-//
-
 import SwiftUI
 import AppKit
 

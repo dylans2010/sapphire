@@ -1,10 +1,3 @@
-//
-//  SystemProcessManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-17.
-//
-
 import AppKit
 
 class LaunchInterceptor {

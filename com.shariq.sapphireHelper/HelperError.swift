@@ -1,10 +1,3 @@
-//
-//  HelperError.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-02
-//
-
 import Foundation
 
 public let HelperErrorDomain = "com.shariq.sapphireHelper.ErrorDomain"

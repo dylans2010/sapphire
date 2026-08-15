@@ -1,9 +1,3 @@
-//
-//  SettingsModel.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-11-22
-
 import SwiftUI
 import AppKit
 import UniformTypeIdentifiers

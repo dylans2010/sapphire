@@ -1,10 +1,3 @@
-//
-//  CustomNotchShape.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-05-12.
-//
-
 import SwiftUI
 
 struct CustomNotchShape: Shape {
