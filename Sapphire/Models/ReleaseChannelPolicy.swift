@@ -12,9 +12,6 @@ enum ReleaseChannelPolicy {
     }
 
     static func preferredChannel(from settings: Settings) -> ReleaseChannel {
-        guard SubscriptionAccess.hasAccess(to: .betaSoftwareUpdates) else {
-            return .stable
-        }
         return settings.releaseChannel
     }
 
@@ -30,8 +27,6 @@ enum ReleaseChannelPolicy {
     }
 
     static func reconcileStoredPreference(_ settings: inout Settings) {
-        if !SubscriptionAccess.hasAccess(to: .betaSoftwareUpdates) {
-            settings.releaseChannel = .stable
-        }
+        // Beta software updates available for all users
     }
 }

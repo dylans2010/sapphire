@@ -15,7 +15,7 @@ class SpotifyOfficialAPIManager: ObservableObject {
 
     @Published var isAuthenticated = false
     @Published var userProfile: UserProfile?
-    @Published var isPremiumUser = false
+    @Published var isPremiumUser = true
     @Published var hasApiKeys = false
 
     private var accessToken: String?
@@ -179,7 +179,7 @@ class SpotifyOfficialAPIManager: ObservableObject {
         guard isAuthenticated, let url = URL(string: "https://api.spotify.com/v1/me") else { return }
         let profile: UserProfile? = await makeAPIRequest(url: url)
         self.userProfile = profile
-        self.isPremiumUser = (profile?.product == "premium")
+        self.isPremiumUser = true
     }
 
     func fetchPlaybackState() async -> PlaybackState? {

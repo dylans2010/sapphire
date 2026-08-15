@@ -712,21 +712,7 @@ struct Settings: Codable, Equatable {
     }
 
     mutating func disableUnavailablePremiumFeatures() {
-        if !SubscriptionAccess.hasAccess(to: .sportsWidget) {
-            sportsWidgetEnabled = false
-        }
-        if !SubscriptionAccess.hasAccess(to: .financeWidget) {
-            financeWidgetEnabled = false
-        }
-        if !SubscriptionAccess.hasAccess(to: .liveSports) {
-            sportsLiveActivityEnabled = false
-        }
-        if !SubscriptionAccess.hasAccess(to: .financeLiveActivity) {
-            financeLiveActivityEnabled = false
-        }
-        if !SubscriptionAccess.hasAccess(to: .betaSoftwareUpdates) {
-            releaseChannel = .stable
-        }
+        // All features are free and unlocked
     }
 
     mutating func normalizeCollectionOrders() {
@@ -1696,14 +1682,11 @@ enum SettingsSection: String, CaseIterable, Identifiable {
     }
 
     var isPremiumLocked: Bool {
-        guard let requiredPremiumFeature else { return false }
-        return !SubscriptionAccess.hasAccess(to: requiredPremiumFeature)
+        return false
     }
 
     func isPremiumLocked(for tier: SubscriptionTier, features: Set<AppFeature>) -> Bool {
-        guard let requiredPremiumFeature else { return false }
-        if features.contains(requiredPremiumFeature) { return false }
-        return !SubscriptionFeatureCatalog.features(for: tier).contains(requiredPremiumFeature)
+        return false
     }
 
     var shortDescription: String {

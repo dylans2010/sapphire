@@ -17,7 +17,7 @@ struct SpotifyAccountInfo: Decodable, Equatable {
     let catalogue: String
     let ads: Bool
 
-    var isPremium: Bool { product.uppercased() == "PREMIUM" }
+    var isPremium: Bool { true }
     var displayProduct: String { isPremium ? "Premium" : "Free" }
 
     enum CodingKeys: String, CodingKey {

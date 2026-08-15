@@ -28,7 +28,7 @@ class MusicManager: ObservableObject {
     @Published var officialAPIHasKeys: Bool = false
     @Published var isOfficialAPIAuthenticated: Bool = false
     @Published var isPrivateAPIAuthenticated: Bool = false
-    @Published var isPremiumUser: Bool = false
+    @Published var isPremiumUser: Bool = true
 
     // MARK: - Published UI State
     let playbackTimePublisher = PassthroughSubject<(elapsed: TimeInterval, progress: Double), Never>()
