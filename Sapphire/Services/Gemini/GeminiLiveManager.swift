@@ -585,7 +585,7 @@ final class GeminiLiveManager: NSObject, ObservableObject, AVCaptureAudioDataOut
         do {
             let image = try await SCScreenshotManager.captureImage(contentFilter: filter, configuration: config)
             let nsImage = NSImage(cgImage: image, size: NSSize(width: image.width, height: image.height))
-            return nsImage.jpegData(maxPixel: maxEdge, quality: 0.55)
+            return NSBitmapImageRep(cgImage: nsImage.cgImage(forProposedRect: nil, context: nil, hints: nil)!).representation(using: .jpeg, properties: [.compressionFactor: 0.55])
         } catch {
             print("[GeminiLiveManager] Screen capture failed: \(error.localizedDescription)")
             return nil
