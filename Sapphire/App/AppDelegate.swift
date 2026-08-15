@@ -244,6 +244,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     lazy var fileShelfManager: FileShelfManager = .shared
     lazy var authManager: AuthenticationManager = .shared
     lazy var intelligenceViewModel: IntelligenceNotchViewModel = IntelligenceNotchViewModel()
+    lazy var circleToSearchManager: CircleToSearchManager = .shared
 
     var statusBarController: StatusBarController?
     var interactionManager: MenuBarInteractionManager?
@@ -580,6 +581,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         window.isOpaque = false
         window.backgroundColor = .clear
         window.hasShadow = true
+        let hostingView = FocusableHostingView(
+            rootView: BetaBlockerView(onValidationComplete: { [weak self] in
+                Task { @MainActor in
+                    self?.dismissBetaBlockerAndContinue()
+                }
             })
                 .environmentObject(settingsModel)
         )

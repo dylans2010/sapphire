@@ -65,11 +65,32 @@ public enum SubscriptionFeatureCatalog {
 public enum SubscriptionRevocationReason: String {
     case sessionExpired
     case cancelled
+
+    public var alertMessage: String {
+        switch self {
+        case .sessionExpired:
+            return "Your Sapphire account session expired. Please sign in again to continue using subscriber features."
+        case .cancelled:
+            return "Your Sapphire subscription is no longer active. Open account settings to review your subscription."
+        }
+    }
+}
+
+public struct BetaEntitlementValidator {
+    public init() {}
+
+    public func validateBetaEntitlement() -> Bool {
+        SubscriptionManager.shared.hasBetaSoftwareAccess
+    }
 }
 
 public enum BetaEntitlementRuntime {
     public static var isBetaBuild: Bool {
         return false
+    }
+
+    public static func makeValidator() -> BetaEntitlementValidator {
+        BetaEntitlementValidator()
     }
 }
 
@@ -77,6 +98,7 @@ extension Notification.Name {
     public static let subscriptionEntitlementsDidChange = Notification.Name("subscriptionEntitlementsDidChange")
     public static let subscriptionPaywallRequested = Notification.Name("subscriptionPaywallRequested")
     public static let subscriptionSessionRevoked = Notification.Name("subscriptionSessionRevoked")
+    public static let sapphireOpenAccountPane = Notification.Name("sapphireOpenAccountPane")
 }
 
 @MainActor
