@@ -345,8 +345,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
 
     private func routeAfterLaunch() {
         if BetaEntitlementRuntime.isBetaBuild {
-            let validator = BetaEntitlementRuntime.makeValidator()
-            if !validator.validateBetaEntitlement() {
+            if !SubscriptionManager.shared.hasBetaSoftwareAccess {
                 showBetaBlocker()
                 return
             }
@@ -574,13 +573,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         window.isOpaque = false
         window.backgroundColor = .clear
         window.hasShadow = true
-        let hostingView = FocusableHostingView(
-                Task { @MainActor in
-                    self?.dismissBetaBlockerAndContinue()
-                }
-            })
-                .environmentObject(settingsModel)
-        )
+        let hostingView = FocusableHostingView(rootView: OnboardingView(onComplete: { [weak self] in
+            self?.dismissBetaBlockerAndContinue()
+        }).environmentObject(settingsModel).environmentObject(musicManager))
         hostingView.wantsLayer = true
         hostingView.layer?.backgroundColor = NSColor.clear.cgColor
         hostingView.layer?.cornerRadius = 28
@@ -1405,6 +1400,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         }
         completionHandler()
     }
+}
 
 // MARK: - KeyableWindow
 
