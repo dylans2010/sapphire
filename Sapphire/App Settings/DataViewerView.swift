@@ -167,7 +167,9 @@ struct DataViewerView: View {
                 .font(.headline)
 
             LazyVStack(spacing: 12) {
-                ForEach(summary.countsByMonitorType.sorted(by: { $0.value > $1.value }), id: \.key) { type, count in
+                ForEach(summary.countsByMonitorType.sorted(by: { $0.value > $1.value }), id: \.key) { element in
+                    let type = element.key
+                    let count = element.value
                     if let monitorType = MonitorType(rawValue: type) {
                         MonitorTypeDataRow(monitorType: monitorType, count: count, total: summary.totalDataPoints)
                     }
@@ -381,6 +383,64 @@ struct DataRangeRow: View {
         .padding()
         .background(Color.gray.opacity(0.05))
         .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+// MARK: - Models and Services
+
+struct DataSummary {
+    var totalDataPoints: Int
+    var databaseSizeMB: Double
+    var countsByMonitorType: [String: Int]
+    var oldestEntry: Date?
+    var newestEntry: Date?
+}
+
+final class MemorySystemManager {
+    static let shared = MemorySystemManager()
+    private init() {}
+
+    func getDataSummary() throws -> DataSummary {
+        DataSummary(
+            totalDataPoints: 0,
+            databaseSizeMB: 0.0,
+            countsByMonitorType: [:],
+            oldestEntry: nil,
+            newestEntry: nil
+        )
+    }
+}
+
+enum MonitorType: String, CaseIterable, Identifiable {
+    case appUsage
+    case systemStats
+    case audio
+    case battery
+    case clipboard
+    case network
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .appUsage: return "App Usage"
+        case .systemStats: return "System Stats"
+        case .audio: return "Audio"
+        case .battery: return "Battery"
+        case .clipboard: return "Clipboard"
+        case .network: return "Network"
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .appUsage: return "app.badge"
+        case .systemStats: return "cpu"
+        case .audio: return "speaker.wave.2"
+        case .battery: return "battery.100"
+        case .clipboard: return "doc.on.clipboard"
+        case .network: return "network"
+        }
     }
 }
 
