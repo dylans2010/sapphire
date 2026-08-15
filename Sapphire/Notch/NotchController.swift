@@ -392,132 +392,142 @@ struct NotchController: View {
 
     // MARK: - Body
     var body: some View {
-        if let config = config {
-            ZStack(alignment: .top) {
-                geminiShadowBackground
+        Group {
+            if let config = config {
+                configuredNotchView(config: config)
+            } else {
+                initialConfigurationView
+            }
+        }
+    }
 
-                notchBackground
-                    .mask(activeShape)
+    private var initialConfigurationView: some View {
+        Color.clear
+            .onAppear {
+                let targetScreen = notchWindow?.screen ?? CursorPosition.targetNotchScreen()
+                let initialConfig = ResolvedNotchConfiguration(from: settings.settings, screen: targetScreen)
+                self.config = initialConfig
+                self.animatedWidth = initialConfig.initialSize.width
+                self.animatedHeight = initialConfig.initialSize.height
+                self.animatedCornerRadius = initialConfig.initialCornerRadius
+                self.animatedBottomCornerRadius = initialConfig.initialCornerRadius
+                self.expansionAnimation = initialConfig.expandAnimation
+                self.liveActivityHorizontalPadding = initialConfig.activityDefaultHorizontalPadding
+            }
+    }
 
-                TopContentStack(config: config,
-                                showActivityView: (notchState == .autoExpanded || notchState == .hoverExpanded || isAnimatingActivityOut),
-                                isLiveActivityActive: isLiveActivityActive,
-                                canRenderAutoContent: canRenderAutoContent,
-                                activeShape: activeShape,
-                                autoActivityView: AnyView(autoActivityView),
-                                contentView: AnyView(contentView),
-                                activityBlurRadius: activityBlurRadius,
-                                activityContentScale: activityContentScale,
-                                animatedContentScale: animatedContentScale,
-                                autoContentOpacity: autoContentOpacity,
-                                isClickExpanded: notchState == .clickExpanded,
-                                liveActivityManager: liveActivityManager,
-                                hudOverlayView: AnyView(hudOverlayView),
-                                expandedOverlayIcons: AnyView(expandedOverlayIcons))
-            }
-            // MARK: - SHADOW LOGIC
-            .shadow(
-                color: activeShadowColor,
-                radius: activeShadowRadius,
-                y: activeShadowYOffset
-            )
-            .frame(width: animatedWidth, height: animatedHeight)
-            .contentShape(activeShape)
-            .onDrop(of: [UTType.fileURL, .plainText], isTargeted: $isFileDropTargeted, perform: handleItemDrop)
-            .padding(.top, -config.topBuffer)
-            .frame(maxWidth: .infinity, alignment: .top)
-            .onAppear(perform: setupMonitors)
-            .onDisappear(perform: teardownMonitors)
-            .onChange(of: fileShelfState.selectedItemForPreview, perform: handlePreviewItemChange)
-            .onChange(of: liveActivityManager.currentActivity, perform: handleActivityChange)
-            .onChange(of: showRightHUDOverlay) { _, _ in
-                updateHUDOverlayAnimation()
-            }
-            .onChange(of: liveActivityManager.contentUpdateID) {
-                if notchState == .autoExpanded || notchState == .hoverExpanded {
-                    let shapeSignature = liveActivityManager.notchShapeSignature
-                    if shapeSignature != lastActivityShapeSignature {
-                        lastActivityShapeSignature = shapeSignature
-                        handleStateChange(from: notchState, to: notchState)
-                    } else {
-                        updateAutoContentSize()
-                    }
-                }
-            }
-            .preferredColorScheme(.dark)
-            .onChange(of: notchState, handleStateChange)
-            .onChange(of: navigationStack, handleNavigationStackChange)
-            .onChange(of: dragManager.isDraggingInActivationZone) { _, isDragging in
-                Task {
-                    await handleDragActivationChange(isDragging: isDragging)
-                }
-            }
-            .onChange(of: activeAppMonitor.isWindowDragging) { _, isDragging in
-                if settings.settings.snapOnWindowDragEnabled {
-                    handleWindowDragChange(isDragging: isDragging)
-                }
-            }
-            .onChange(of: isFileDropTargeted, perform: handleFileDropTargetChange)
-            .onChange(of: measuredClickContentSize) { _, newSize in handleSizeChange(newSize, for: .clickExpanded) }
-            .onChange(of: measuredAutoContentSize) { _, newSize in handleSizeChange(newSize, for: .autoExpanded) }
-            .onReceive(pickerHelper.pickerResultPublisher, perform: handlePickerResult)
-            .onReceive(NotificationCenter.default.publisher(for: .sapphireOpenMusicQueue)) { _ in
-                openMusicHub(mode: .musicQueueAndPlaylists)
-            }
-            .onReceive(NotificationCenter.default.publisher(for: .sapphireOpenMusicDevices)) { _ in
-                openMusicHub(mode: .musicDevices)
-            }
-            .onReceive(NotificationCenter.default.publisher(for: .sapphireOpenCircleToSearch)) { notification in
-                openCircleToSearch(object: notification.object as? String)
-            }
-            .onChange(of: showLyrics, perform: handleShowLyricsChange)
-            .onChange(of: isInteractive) { _, newValue in
-                updateMouseEventHandling(isInteractive: newValue)
-            }
-            .onChange(of: animatedWidth) { _, _ in
-                updateMouseEventHandling(isInteractive: isInteractive)
-            }
-            .onChange(of: animatedHeight) { _, _ in
-                updateMouseEventHandling(isInteractive: isInteractive)
-            }
-            .onChange(of: shouldHideWindowForSharing) { _, newValue in updateWindowSharingBehavior(shouldBeHidden: newValue) }
-            .onChange(of: isInteractive) { _, isNowInteractive in
-                if isNowInteractive {
-                    MenuBarInteractionManager.shared.stopMonitoring()
+    private func configuredNotchView(config: ResolvedNotchConfiguration) -> some View {
+        ZStack(alignment: .top) {
+            geminiShadowBackground
+
+            notchBackground
+                .mask(activeShape)
+
+            TopContentStack(config: config,
+                            showActivityView: (notchState == .autoExpanded || notchState == .hoverExpanded || isAnimatingActivityOut),
+                            isLiveActivityActive: isLiveActivityActive,
+                            canRenderAutoContent: canRenderAutoContent,
+                            activeShape: activeShape,
+                            autoActivityView: AnyView(autoActivityView),
+                            contentView: AnyView(contentView),
+                            activityBlurRadius: activityBlurRadius,
+                            activityContentScale: activityContentScale,
+                            animatedContentScale: animatedContentScale,
+                            autoContentOpacity: autoContentOpacity,
+                            isClickExpanded: notchState == .clickExpanded,
+                            liveActivityManager: liveActivityManager,
+                            hudOverlayView: AnyView(hudOverlayView),
+                            expandedOverlayIcons: AnyView(expandedOverlayIcons))
+        }
+        // MARK: - SHADOW LOGIC
+        .shadow(
+            color: activeShadowColor,
+            radius: activeShadowRadius,
+            y: activeShadowYOffset
+        )
+        .frame(width: animatedWidth, height: animatedHeight)
+        .contentShape(activeShape)
+        .onDrop(of: [UTType.fileURL, .plainText], isTargeted: $isFileDropTargeted, perform: handleItemDrop)
+        .padding(.top, -config.topBuffer)
+        .frame(maxWidth: .infinity, alignment: .top)
+        .onAppear(perform: setupMonitors)
+        .onDisappear(perform: teardownMonitors)
+        .onChange(of: fileShelfState.selectedItemForPreview, perform: handlePreviewItemChange)
+        .onChange(of: liveActivityManager.currentActivity, perform: handleActivityChange)
+        .onChange(of: showRightHUDOverlay) { _, _ in
+            updateHUDOverlayAnimation()
+        }
+        .onChange(of: liveActivityManager.contentUpdateID) {
+            if notchState == .autoExpanded || notchState == .hoverExpanded {
+                let shapeSignature = liveActivityManager.notchShapeSignature
+                if shapeSignature != lastActivityShapeSignature {
+                    lastActivityShapeSignature = shapeSignature
+                    handleStateChange(from: notchState, to: notchState)
                 } else {
-                    MenuBarInteractionManager.shared.startMonitoring()
+                    updateAutoContentSize()
                 }
             }
-            .onChange(of: settings.settings) { _, newSettings in
-                // Break up complex expression to help the type-checker
-                let screen: NSScreen?
-                if let win = notchWindow {
-                    screen = win.screen
-                } else {
-                    screen = CursorPosition.targetNotchScreen()
-                }
-
-                let resolved = ResolvedNotchConfiguration(from: newSettings, screen: screen)
-
-                self.config = resolved
-                self.expansionAnimation = resolved.expandAnimation
-
-                // Re-evaluate layout/state with the updated config
-                handleStateChange(from: notchState, to: notchState)
+        }
+        .preferredColorScheme(.dark)
+        .onChange(of: notchState, handleStateChange)
+        .onChange(of: navigationStack, handleNavigationStackChange)
+        .onChange(of: dragManager.isDraggingInActivationZone) { _, isDragging in
+            Task {
+                await handleDragActivationChange(isDragging: isDragging)
             }
-        } else {
-            Color.clear
-                .onAppear {
-                    let targetScreen = notchWindow?.screen ?? CursorPosition.targetNotchScreen()
-                    let initialConfig = ResolvedNotchConfiguration(from: settings.settings, screen: targetScreen)
-                    self.config = initialConfig
-                    self.animatedWidth = initialConfig.initialSize.width
-                    self.animatedHeight = initialConfig.initialSize.height
-                    self.animatedCornerRadius = initialConfig.initialCornerRadius
-                    self.animatedBottomCornerRadius = initialConfig.initialCornerRadius
-                    self.expansionAnimation = initialConfig.expandAnimation
-                    self.liveActivityHorizontalPadding = initialConfig.activityDefaultHorizontalPadding
-                }
+        }
+        .onChange(of: activeAppMonitor.isWindowDragging) { _, isDragging in
+            if settings.settings.snapOnWindowDragEnabled {
+                handleWindowDragChange(isDragging: isDragging)
+            }
+        }
+        .onChange(of: isFileDropTargeted, perform: handleFileDropTargetChange)
+        .onChange(of: measuredClickContentSize) { _, newSize in handleSizeChange(newSize, for: .clickExpanded) }
+        .onChange(of: measuredAutoContentSize) { _, newSize in handleSizeChange(newSize, for: .autoExpanded) }
+        .onReceive(pickerHelper.pickerResultPublisher, perform: handlePickerResult)
+        .onReceive(NotificationCenter.default.publisher(for: .sapphireOpenMusicQueue)) { _ in
+            openMusicHub(mode: .musicQueueAndPlaylists)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .sapphireOpenMusicDevices)) { _ in
+            openMusicHub(mode: .musicDevices)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .sapphireOpenCircleToSearch)) { notification in
+            openCircleToSearch(object: notification.object as? String)
+        }
+        .onChange(of: showLyrics, perform: handleShowLyricsChange)
+        .onChange(of: isInteractive) { _, newValue in
+            updateMouseEventHandling(isInteractive: newValue)
+        }
+        .onChange(of: animatedWidth) { _, _ in
+            updateMouseEventHandling(isInteractive: isInteractive)
+        }
+        .onChange(of: animatedHeight) { _, _ in
+            updateMouseEventHandling(isInteractive: isInteractive)
+        }
+        .onChange(of: shouldHideWindowForSharing) { _, newValue in updateWindowSharingBehavior(shouldBeHidden: newValue) }
+        .onChange(of: isInteractive) { _, isNowInteractive in
+            if isNowInteractive {
+                MenuBarInteractionManager.shared.stopMonitoring()
+            } else {
+                MenuBarInteractionManager.shared.startMonitoring()
+            }
+        }
+        .onChange(of: settings.settings) { _, newSettings in
+            // Break up complex expression to help the type-checker
+            let screen: NSScreen?
+            if let win = notchWindow {
+                screen = win.screen
+            } else {
+                screen = CursorPosition.targetNotchScreen()
+            }
+
+            let resolved = ResolvedNotchConfiguration(from: newSettings, screen: screen)
+
+            self.config = resolved
+            self.expansionAnimation = resolved.expandAnimation
+
+            // Re-evaluate layout/state with the updated config
+            handleStateChange(from: notchState, to: notchState)
         }
     }
 }
