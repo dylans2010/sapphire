@@ -6,7 +6,7 @@
 import Foundation
 import Combine
 
-public struct OTPEvent: Identifiable, Sendable {
+public struct OTPEvent: Identifiable, Equatable, Sendable {
     public var id: String
     public var code: String
     public var source: String
