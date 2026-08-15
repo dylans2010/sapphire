@@ -8410,7 +8410,7 @@ struct AboutSettingsView: View {
                             }
                             .buttonStyle(PlainButtonStyle())
 
-                            Link(destination: URL(string: "https://github.com/cshariq/Sapphire")!) {
+                            Link(destination: URL(string: "https://github.com/dylans2010/Sapphire")!) {
                                 Image("github_logo")
                                     .resizable()
                                     .renderingMode(.template)
@@ -8553,7 +8553,7 @@ struct AboutSettingsView: View {
                     }
                 }.modifier(SettingsContainerModifier()).onAppear(perform: permissionsManager.checkAllPermissions)
 
-                Text("© 2025 Shariq Charolia. All rights reserved.").font(.caption).foregroundStyle(.tertiary).frame(maxWidth: .infinity, alignment: .center).padding(.top, 20)
+                Text("© 2025 Sapphire. All rights reserved.").font(.caption).foregroundStyle(.tertiary).frame(maxWidth: .infinity, alignment: .center).padding(.top, 20)
             }.padding(25).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .onAppear {
                 ReleaseChannelPolicy.reconcileStoredPreference(&settingsModel.settings)

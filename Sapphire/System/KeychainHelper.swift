@@ -9,7 +9,7 @@ class KeychainHelper {
         if let bundleIdentifier = Bundle.main.bundleIdentifier {
             self.service = bundleIdentifier
         } else {
-            self.service = "com.shariq.sapphire"
+            self.service = "com.dylans2010.Sapphire"
         }
     }
 

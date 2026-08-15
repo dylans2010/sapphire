@@ -100,7 +100,7 @@ class CustomTLSClient {
         self.port = NWEndpoint.Port(rawValue: port)!
         self.userAgent = userAgent
         self.cookieManager = cookieManager
-        self.queue = DispatchQueue(label: "com.shariq.sapphire.customtlsclient.\(host).\(UUID().uuidString)")
+        self.queue = DispatchQueue(label: "com.dylans2010.sapphire.customtlsclient.\(host).\(UUID().uuidString)")
         self.reusableConnection = ReusableTLSConnection(host: self.host, port: self.port, queue: self.queue)
     }
 

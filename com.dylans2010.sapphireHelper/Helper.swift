@@ -25,7 +25,7 @@ fileprivate enum IOPMPrivate {
 
 class Helper: NSObject, HelperProtocol {
 
-    private let logger = Logger(subsystem: "com.shariq.sapphireHelper", category: "Helper")
+    private let logger = Logger(subsystem: "com.dylans2010.sapphireHelper", category: "Helper")
     var client: InstallationClient?
     private let smc: SMC?
 
@@ -304,7 +304,7 @@ class Helper: NSObject, HelperProtocol {
 
         let description: [String: Any] = [
             kAudioAggregateDeviceNameKey: "Sapphire Multi-Output",
-            kAudioAggregateDeviceUIDKey: "com.shariq.sapphire.multi-output-device",
+            kAudioAggregateDeviceUIDKey: "com.dylans2010.sapphire.multi-output-device",
             kAudioAggregateDeviceSubDeviceListKey: subDeviceList,
             kAudioAggregateDeviceMasterSubDeviceKey: masterDeviceUID as CFString,
             kAudioAggregateDeviceIsStackedKey: 1
