@@ -1,9 +1,3 @@
-//
-//  MusicLongPressSupport.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-08-10
-
 import SwiftUI
 
 extension Notification.Name {

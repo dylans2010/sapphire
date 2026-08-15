@@ -1,10 +1,3 @@
-//
-//  FaceIDRegistrationView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-26
-//
-
 import SwiftUI
 
 struct FaceIDRegistrationView: View {

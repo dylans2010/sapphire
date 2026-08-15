@@ -1,10 +1,3 @@
-//
-//  Display.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-14.
-//
-
 import Foundation
 import Cocoa
 

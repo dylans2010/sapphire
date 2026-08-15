@@ -1,10 +1,3 @@
-//
-//  MirrorPlayerView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-08-11
-//
-
 import SwiftUI
 import AVFoundation
 import AppKit

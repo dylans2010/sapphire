@@ -1,10 +1,3 @@
-//
-//  BatteryLogEntry.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-14.
-//
-
 import Foundation
 import IOKit.ps
 import AppKit

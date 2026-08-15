@@ -1,9 +1,3 @@
-//
-//  PropertyListModifier.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2021-10-23
-
 #!/usr/bin/env xcrun --sdk macosx swift
 
 import Foundation

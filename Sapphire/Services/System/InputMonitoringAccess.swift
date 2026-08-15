@@ -1,10 +1,3 @@
-//
-//  InputMonitoringAccess.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-08-12.
-//
-
 import Foundation
 import CoreGraphics
 

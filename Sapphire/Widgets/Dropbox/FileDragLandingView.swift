@@ -1,10 +1,3 @@
-//
-//  FileDragLandingView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-12.
-//
-
 import SwiftUI
 import UniformTypeIdentifiers
 import AppKit

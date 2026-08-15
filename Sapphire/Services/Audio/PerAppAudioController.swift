@@ -1,10 +1,3 @@
-//
-//  PerAppAudioController.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-05-09.
-//
-
 import Foundation
 import AppKit
 

@@ -1,10 +1,3 @@
-//
-//  CaptchaProvider.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-18.
-//
-
 import SwiftUI
 import CaptchaSolverInterface
 import WebKit

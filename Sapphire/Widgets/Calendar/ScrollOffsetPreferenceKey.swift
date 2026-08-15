@@ -1,10 +1,3 @@
-//
-//  ScrollOffsetPreferenceKey.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-06-27.
-//
-
 import SwiftUI
 
 struct DayFrame: Equatable {

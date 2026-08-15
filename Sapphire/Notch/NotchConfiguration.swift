@@ -1,10 +1,3 @@
-//
-//  NotchConfiguration.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-05-08.
-//
-
 import SwiftUI
 import AppKit
 import CoreGraphics

@@ -1,10 +1,3 @@
-//
-//  FormatSelectionView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-12.
-//
-
 import SwiftUI
 
 struct FormatSelectionView: View {

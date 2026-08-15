@@ -1,10 +1,3 @@
-//
-//  NearbyConnectionManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-21.
-//
-
 import Foundation
 import Network
 import System

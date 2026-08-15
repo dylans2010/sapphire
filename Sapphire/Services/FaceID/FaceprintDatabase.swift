@@ -1,10 +1,3 @@
-//
-//  FaceprintDatabase.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-15.
-//
-
 import Vision
 import CoreML
 import AppKit

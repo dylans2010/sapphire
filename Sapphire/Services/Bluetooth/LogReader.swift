@@ -1,10 +1,3 @@
-//
-//  LogReader.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2024/2/9.
-//
-
 import SwiftUI
 import CryptoKit
 import SystemConfiguration

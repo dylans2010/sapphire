@@ -1,10 +1,3 @@
-//
-//  FileDropManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-12.
-//
-
 import Foundation
 import Combine
 import NearbyShare

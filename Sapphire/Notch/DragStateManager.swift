@@ -1,10 +1,3 @@
-//
-//  DragStateManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-12.
-//
-
 import AppKit
 import Combine
 import UniformTypeIdentifiers

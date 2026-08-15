@@ -2,14 +2,6 @@
 //  KeyboardBacklightManager.m
 //  Sapphire
 //
-//  Created by Shariq Charolia on 2025-08-22.
-//
-
-
-//
-//  KeyboardBacklightManager.m
-//  Sapphire
-//
 //  Created by Gemini Assistant.
 //
 

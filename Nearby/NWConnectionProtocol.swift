@@ -1,10 +1,3 @@
-//
-//  NWConnectionProtocol.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-02.
-//
-
 import Foundation
 import Network
 

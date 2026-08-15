@@ -1,10 +1,3 @@
-//
-//  AudioDeviceManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-08.
-//
-
 import Foundation
 import Combine
 import AudioToolbox

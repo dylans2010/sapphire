@@ -1,10 +1,3 @@
-//
-//  OutboundNearbyConnection.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 23.09.2023.
-//
-
 import Foundation
 import Network
 import CryptoKit

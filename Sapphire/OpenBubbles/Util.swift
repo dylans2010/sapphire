@@ -1,10 +1,3 @@
-//
-//  Util.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 7/31/24.
-//
-
 import Foundation
 import CommonCrypto
 

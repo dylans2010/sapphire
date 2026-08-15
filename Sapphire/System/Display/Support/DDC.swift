@@ -1,10 +1,3 @@
-//
-//  DDC.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-18.
-//
-
 import Foundation
 
 // MARK: - DDC Communication Wrapper

@@ -1,10 +1,3 @@
-//
-//  iBattery.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-24.
-//
-
 import Foundation
 import IOKit.ps
 

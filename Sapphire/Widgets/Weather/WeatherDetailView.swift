@@ -1,10 +1,3 @@
-//
-//  WeatherDetailView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-10.
-//
-
 import SwiftUI
 
 struct RelativeTimeView: View {

@@ -1,10 +1,3 @@
-//
-//  LockScreenWindow.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-11.
-//
-
 import AppKit
 
 class TopmostWindow: NSWindow {

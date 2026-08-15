@@ -1,10 +1,3 @@
-//
-//  LiveActivityComponents.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-06.
-//
-
 import SwiftUI
 import EventKit
 import AVFoundation

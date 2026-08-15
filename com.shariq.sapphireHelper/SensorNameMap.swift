@@ -1,10 +1,3 @@
-//
-//  SensorNameMap.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-24.
-//
-
 import Foundation
 
 struct SensorNameMap {

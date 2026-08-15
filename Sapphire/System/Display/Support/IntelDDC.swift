@@ -1,9 +1,3 @@
-//
-//  IntelDDC.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-20
-
 import Foundation
 import IOKit.i2c
 import os.log

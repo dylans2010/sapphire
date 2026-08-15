@@ -1,10 +1,3 @@
-//
-//  PlayCountResponse.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-16.
-//
-
 import Foundation
 
 fileprivate struct PlayCountResponse: Codable {

@@ -1,10 +1,3 @@
-//
-//  LidAngleSensor.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-04-01
-//
-
 import AppKit
 import Combine
 import Foundation

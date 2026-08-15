@@ -1,10 +1,3 @@
-//
-//  BatteryEstimator.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-14.
-//
-
 import Foundation
 import Combine
 import IOKit.ps

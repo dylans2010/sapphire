@@ -1,12 +1,3 @@
-////
-////  NSObject.h
-////  Sapphire
-////
-////  Created by Shariq Charolia on 2025-09-18.
-////
-//
-//
-//
 //#import "IMessageService.h"
 //
 //// Import the specific private headers from your project using quotes

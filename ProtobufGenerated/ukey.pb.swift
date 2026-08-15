@@ -1,10 +1,3 @@
-//
-//  ukey.pb.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-29
-//
-
 import Foundation
 import SwiftProtobuf
 

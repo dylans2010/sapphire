@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-04
-//
-
 import Cocoa
 import SwiftUI
 import Combine

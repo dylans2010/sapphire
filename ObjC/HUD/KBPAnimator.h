@@ -1,10 +1,3 @@
-//
-//  KBPAnimator.h
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-22.
-//
-
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN

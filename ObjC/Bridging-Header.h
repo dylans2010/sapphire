@@ -1,10 +1,3 @@
-//
-//  Bridging-Header.h
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-02.
-//
-
 #pragma once
 
 #import <Foundation/Foundation.h>

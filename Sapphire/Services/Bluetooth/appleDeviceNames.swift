@@ -1,10 +1,3 @@
-//
-//  appleDeviceNames.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-13.
-//
-
 let appleDeviceNames = [
     "iPhone1,1": "iPhone",
     "iPhone1,2": "iPhone 3G",

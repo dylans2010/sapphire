@@ -1,10 +1,3 @@
-//
-//  LiveActivityManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-04
-//
-
 import Foundation
 import SwiftUI
 import Combine

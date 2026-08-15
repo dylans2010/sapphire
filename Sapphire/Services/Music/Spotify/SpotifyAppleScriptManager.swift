@@ -1,10 +1,3 @@
-//
-//  SpotifyAppleScriptManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-22.
-//
-
 import Foundation
 import AppKit
 

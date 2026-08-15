@@ -1,10 +1,3 @@
-//
-//  Stats.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-28.
-//
-
 import Cocoa
 import Foundation
 import SystemConfiguration

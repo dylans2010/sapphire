@@ -1,9 +1,3 @@
-//
-//  Command.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-20
-
 enum Command: UInt8 {
   case none = 0
 

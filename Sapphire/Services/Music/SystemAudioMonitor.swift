@@ -1,10 +1,3 @@
-//
-//  SystemAudioMonitor.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-01.
-//
-
 import Foundation
 import AVFoundation
 import Combine

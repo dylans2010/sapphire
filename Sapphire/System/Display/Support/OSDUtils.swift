@@ -1,9 +1,3 @@
-//
-//  OSDUtils.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-18
-
 import Cocoa
 
 class OSDUtils: NSObject {

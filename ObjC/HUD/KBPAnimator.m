@@ -1,9 +1,3 @@
-//
-//  KBPAnimator.m
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-22.
-//
 #import "KBPAnimator.h"
 #import "KBPPulseManager.h"
 

@@ -1,10 +1,3 @@
-//
-//  OnboardingView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-07-09.
-//
-
 import SwiftUI
 import AVKit
 import ServiceManagement

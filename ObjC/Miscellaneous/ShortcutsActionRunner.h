@@ -1,11 +1,3 @@
-//
-//  ShortcutsActionRunner.h
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-21.
-//
-
-
 // --- START OF FILE ShortcutsActionRunner.h ---
 
 #import <Foundation/Foundation.h>

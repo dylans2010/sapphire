@@ -1,10 +1,3 @@
-//
-//  MLModelManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-10-17.
-//
-
 import CoreML
 import os
 

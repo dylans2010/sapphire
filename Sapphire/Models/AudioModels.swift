@@ -1,10 +1,3 @@
-//
-//  AudioModels.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-13.
-//
-
 import Foundation
 
 enum EQPreset: String, CaseIterable, Identifiable {

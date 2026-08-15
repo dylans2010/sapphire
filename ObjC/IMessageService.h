@@ -1,11 +1,3 @@
-////
-////  IMessageService.h
-////  Sapphire
-////
-////  Created by Shariq Charolia on 2025-09-18.
-////
-//
-//
 //#import <Foundation/Foundation.h>
 //
 //// Define a block (closure) to pass events back to Swift

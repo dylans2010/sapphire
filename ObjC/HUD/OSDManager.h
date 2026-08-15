@@ -1,13 +1,5 @@
 //
 //  OSDManager.h
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-22.
-//
-
-
-//
-//  OSDManager.h
 //  KBPulse
 //
 //  Created by EthanRDoesMC on 10/20/21.

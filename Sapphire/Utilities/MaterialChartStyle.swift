@@ -1,9 +1,3 @@
-//
-//  MaterialChartStyle.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2026-08-10
-
 import SwiftUI
 import Charts
 

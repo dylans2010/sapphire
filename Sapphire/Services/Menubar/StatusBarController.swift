@@ -1,10 +1,3 @@
-//
-//  StatusBarController.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-11-08
-//
-
 import AppKit
 import Combine
 

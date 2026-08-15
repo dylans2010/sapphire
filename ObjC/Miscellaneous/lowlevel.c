@@ -1,11 +1,3 @@
-//
-//  lowlevel.c
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-09-13.
-//
-
-
 #include "lowlevel.h"
 #include <CoreFoundation/CoreFoundation.h>
 #include <IOKit/pwr_mgt/IOPMLib.h>

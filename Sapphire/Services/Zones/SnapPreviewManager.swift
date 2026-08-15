@@ -1,10 +1,3 @@
-//
-//  SnapPreviewManager.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-08-24.
-//
-
 import SwiftUI
 import AppKit
 
