@@ -414,6 +414,69 @@ struct GeneralSettingsView: View {
                     Divider().padding(.leading, 20)
 
                     ToggleRow(title: "Google Analytics", description: "Send anonymous usage events to Google to help improve Sapphire. Disable this to opt out of analytics collection.", isOn: $settings.settings.googleAnalyticsEnabled)
+
+                    if settings.settings.googleAnalyticsEnabled {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Google Services Configuration")
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(.secondary)
+
+                            Text("Add your Google App ID from GoogleService-Info.plist or Firebase Console to enable Google Analytics.")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Google App ID")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundStyle(.white.opacity(0.8))
+                                TextField("e.g. 1:123456789012:ios:abcd1234efgh5678", text: $settings.settings.googleAppID)
+                                    .textFieldStyle(.plain)
+                                    .padding(8)
+                                    .background(Color.black.opacity(0.2))
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.2)))
+                            }
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("API Key (Optional)")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundStyle(.white.opacity(0.8))
+                                TextField("e.g. AIzaSy...", text: $settings.settings.googleAPIKey)
+                                    .textFieldStyle(.plain)
+                                    .padding(8)
+                                    .background(Color.black.opacity(0.2))
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.2)))
+                            }
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Project ID (Optional)")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundStyle(.white.opacity(0.8))
+                                TextField("e.g. my-firebase-project", text: $settings.settings.googleProjectID)
+                                    .textFieldStyle(.plain)
+                                    .padding(8)
+                                    .background(Color.black.opacity(0.2))
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.2)))
+                            }
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("GCM Sender ID (Optional)")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundStyle(.white.opacity(0.8))
+                                TextField("e.g. 123456789012", text: $settings.settings.googleGCMSenderID)
+                                    .textFieldStyle(.plain)
+                                    .padding(8)
+                                    .background(Color.black.opacity(0.2))
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.2)))
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 8)
+                    }
+
                     Divider().padding(.leading, 20)
 
                     ToggleRow(title: "Hide Notch When Inactive", description: "Hide the notch entirely whenever Sapphire is idle and not showing content.", isOn: $settings.settings.hideNotchWhenInactive)
