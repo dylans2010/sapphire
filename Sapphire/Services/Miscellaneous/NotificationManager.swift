@@ -30,6 +30,21 @@ struct NotificationPayload: Identifiable, Equatable {
         return lowerBody.contains("sent an image") || lowerBody.contains("image file")
     }
 
+    var verificationCode: String? {
+        let text = "\(title) \(body)"
+        let lower = text.lowercased()
+        let keywords = ["code", "otp", "verification", "passcode", "pin", "security", "login", "auth", "2fa", "one-time", "confirm"]
+        guard keywords.contains(where: { lower.contains($0) }) else { return nil }
+
+        if let regex = try? NSRegularExpression(pattern: #"\b\d{4,8}\b"#) {
+            let nsText = text as NSString
+            if let match = regex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: nsText.length)) {
+                return nsText.substring(with: match.range)
+            }
+        }
+        return nil
+    }
+
     var appName: String {
         switch appIdentifier {
         case "com.apple.iChat", "com.apple.MobileSMS": return "Messages"
@@ -236,6 +251,14 @@ class NotificationManager: ObservableObject {
                     if _shouldShowNotification(for: notification) { notificationsToPublish.append(notification) }
                 }
             }
+            if let first = notificationsToPublish.first {
+                DispatchQueue.main.async {
+                    self.latestNotification = first
+                }
+            }
+        } catch {
+            print("NotificationManager check error: \(error)")
+        }
     }
     private func _shouldShowNotification(for payload: NotificationPayload) -> Bool {
         let settings = settingsModel.settings

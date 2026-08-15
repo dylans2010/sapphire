@@ -1,9 +1,3 @@
-//
-//  NotchWidgetView.swift
-//  Sapphire
-//
-//  Created by Shariq Charolia on 2025-11-16
-
 import SwiftUI
 
 private struct NavigationStackKey: EnvironmentKey {
