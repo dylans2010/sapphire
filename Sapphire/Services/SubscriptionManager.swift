@@ -76,21 +76,9 @@ public enum SubscriptionRevocationReason: String {
     }
 }
 
-public struct BetaEntitlementValidator {
-    public init() {}
-
-    public func validateBetaEntitlement() -> Bool {
-        SubscriptionManager.shared.hasBetaSoftwareAccess
-    }
-}
-
 public enum BetaEntitlementRuntime {
     public static var isBetaBuild: Bool {
         return false
-    }
-
-    public static func makeValidator() -> BetaEntitlementValidator {
-        BetaEntitlementValidator()
     }
 }
 
