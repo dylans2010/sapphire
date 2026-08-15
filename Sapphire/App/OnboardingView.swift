@@ -623,65 +623,22 @@ private struct SubscriptionOverviewStepView: View {
             )
             .padding(.horizontal, 50)
 
-            HStack(alignment: .top, spacing: 14) {
-                ForEach(SubscriptionFeatureCatalog.marketingTierHighlights(), id: \.tier) { highlight in
-                    OnboardingPlanCard(
-                        tier: highlight.tier,
-                        perks: highlight.features,
-                        isCurrent: highlight.tier == currentTier,
-                        onUpgrade: onboardingTierRank(highlight.tier) > onboardingTierRank(currentTier)
-                            ? { beginCheckout(for: highlight.tier) }
-                            : nil
-                    )
-                }
-            }
-            .padding(.horizontal, 50)
-            .frame(height: 390)
-
-            if currentTier == .free {
-                Text("Upgrade to Basic or higher for beta updates, Gemini Live, and more.")
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 50)
-
-                Link("Upgrade on website instead", destination: URL(string: "https://sapphire-app.tech/")!)
-                    .font(.caption)
-                    .foregroundStyle(.purple)
-            }
-
             Spacer()
 
             OnboardingButton(title: "Skip", action: onNext)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .sheet(isPresented: $showUpgradeSheet, onDismiss: {
-            Task { await subscriptionManager.bootstrap() }
-        }) {
-            NativePaymentSheetView(tier: selectedCheckoutTier, deviceCount: 1, isAddingOnly: false) {
-                showUpgradeSheet = false
-            }
-            .frame(
-                width: min(820, (NSScreen.main?.visibleFrame.width ?? 820) * 0.80),
-                height: min(750, (NSScreen.main?.visibleFrame.height ?? 750) * 0.75)
-            )
-        }
-        .onAppear {
-            Task { await subscriptionManager.bootstrap() }
-        }
-    }
-
-    private func beginCheckout(for tier: SubscriptionTier) {
-        selectedCheckoutTier = tier
-        showUpgradeSheet = true
+        .frame(
+            width: min(820, (NSScreen.main?.visibleFrame.width ?? 820) * 0.80),
+            height: min(750, (NSScreen.main?.visibleFrame.height ?? 750) * 0.75)
+        )
     }
 
     private func onboardingTierRank(_ tier: SubscriptionTier) -> Int {
         switch tier {
-        case .free: return 0
         case .basic: return 1
         case .pro: return 2
         case .ultra: return 3
+        default: return 0
         }
     }
 }

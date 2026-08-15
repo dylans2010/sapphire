@@ -1037,8 +1037,6 @@ self.notchWidget = NotchWidgetView(calendarViewModel: calendarViewModel)
         case .geminiLive(let payload): GeminiActiveActivityView.right(isMuted: payload.isMicMuted) { geminiLiveManager.toggleMicrophone() }
         case .sports(let payload, _):
             SportsLiveActivityView.right(for: payload, preferLogo: settings.settings.sportsPreferLogo)
-        case .finance(let payload):
-            FinanceLiveActivityView.right(for: payload)
         case .microphone: MicrophoneLiveActivityView.right { MicrophoneUsageManager.shared.toggleMute() }
         case .nearDrop(let payload): NearDropCompactActivityView.right(payload: payload)
         case .hud(let type): SystemHUDSlimActivityView.right(type: type, settings: SettingsModel.shared)

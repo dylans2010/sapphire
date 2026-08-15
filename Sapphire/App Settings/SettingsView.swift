@@ -34,7 +34,7 @@ struct SettingsView: View {
                     .frame(width: 250)
 
                 if showAccountPane {
-                    AccountSettingsView()
+                    SettingsView()
                         .id("account-pane")
                         .transition(.move(edge: .trailing).combined(with: .opacity))
                 } else {
